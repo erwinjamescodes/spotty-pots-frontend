@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import WarningIcon from "@mui/icons-material/Warning";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import useSidebarStore from "../store/sidebarStore";
@@ -61,14 +61,6 @@ function Sidebar() {
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
-
-  // const legend = [
-  //   { label: "Minor", color: "#ffc917" },
-  //   { label: "Moderate", color: "#ff5c36" },
-  //   { label: "Severe", color: "#ca043b" },
-  //   { label: "Extreme", color: "#930c41" },
-  //   { label: "No longer passable", color: "#5d1847" },
-  // ];
 
   return (
     <div>

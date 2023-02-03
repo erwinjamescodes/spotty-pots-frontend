@@ -32,7 +32,9 @@ export default function LubakMap() {
   useEffect(() => {
     const getPins = async () => {
       try {
-        const allPins = await axios.get("https://lubak-tracker-backend.onrender.com/api/pins");
+        const allPins = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_API}/api/pins`
+        );
         setPins(allPins.data);
       } catch (err) {
         console.log(err);
@@ -64,7 +66,10 @@ export default function LubakMap() {
     };
 
     try {
-      const res = await axios.post("https://lubak-tracker-backend.onrender.com/api/pins", newPin);
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/pins`,
+        newPin
+      );
       setPins([...pins, res.data]);
       setNewPlace(null);
       setIntensity(1);
@@ -92,10 +97,13 @@ export default function LubakMap() {
 
   const handleUpdateStatus = async (id, status) => {
     try {
-      const res = await axios.put(`https://lubak-tracker-backend.onrender.com/api/pins/${id}`, {
-        isFixed: status,
-        intensity: intensity,
-      });
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/pins/${id}`,
+        {
+          isFixed: status,
+          intensity: intensity,
+        }
+      );
       setPins((prev) => prev.map((pin) => (pin._id === id ? res.data : pin)));
       setStatus(false);
       setCurrentPlaceId(null);
@@ -107,7 +115,9 @@ export default function LubakMap() {
 
   const handleDeleteClick = async (id) => {
     try {
-      await axios.delete(`https://lubak-tracker-backend.onrender.com/api/pins/${id}`);
+      await axios.delete(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/pins/${id}`
+      );
       setPins(pins.filter((pin) => pin._id !== id));
     } catch (err) {
       console.log(err);

@@ -23,7 +23,7 @@ export default function Login() {
     };
     try {
       const res = await axios.post(
-        "https://lubak-tracker-backend.onrender.com/api/users/login",
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/users/login`,
         user
       );
       await setUserType(res.data.userType);
