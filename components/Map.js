@@ -9,7 +9,6 @@ import DisplayPins from "./DisplayPins";
 import AddPin from "./AddPin";
 
 export default function LubakMap() {
-  //STATES
   const viewport = useViewportStore();
   const { currentUsername, setCurrentUsername, userType, setUserType } =
     useUsernameStore();
