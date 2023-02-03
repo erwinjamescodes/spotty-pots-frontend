@@ -22,6 +22,7 @@ export default function LubakMap() {
   const [status, setStatus] = useState(false);
   const { mymap } = useMap();
   const [isFetchingPins, setIsFetchingPins] = useState(false);
+  const [isMapLoading, setIsMapLoading] = useState(true);
 
   //SETTING UP STATES AND LOCAL STORAGE
   useEffect(() => {
@@ -133,7 +134,7 @@ export default function LubakMap() {
       <main className=" w-[100%] h-[100vh] bg-slate-300">
         <HeaderSearch mymap={mymap} />
         <div className="map w-[100%] h-[100vh]">
-          {isFetchingPins ? (
+          {isFetchingPins && isMapLoading ? (
             <div className="absolute left-[50%] top-[50%] ">
               <div className="flex">
                 <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
@@ -156,6 +157,7 @@ export default function LubakMap() {
               onClick={() => {
                 closePopupOnOutsideClick();
               }}
+              onLoad={() => setIsMapLoading(false)}
             >
               <DisplayPins
                 pins={pins}
