@@ -7,6 +7,8 @@ import useUsernameStore from "../store/userNameStore";
 import HeaderSearch from "./HeaderSearch";
 import DisplayPins from "./DisplayPins";
 import AddPin from "./AddPin";
+import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function LubakMap() {
   const viewport = useViewportStore();
@@ -19,6 +21,7 @@ export default function LubakMap() {
   const [clickedAPin, setClickedAPin] = useState(false);
   const [status, setStatus] = useState(false);
   const { mymap } = useMap();
+  const [isFetchingPins, setIsFetchingPins] = useState(false);
 
   //SETTING UP STATES AND LOCAL STORAGE
   useEffect(() => {
@@ -30,6 +33,7 @@ export default function LubakMap() {
 
   useEffect(() => {
     const getPins = async () => {
+      setIsFetchingPins(true);
       try {
         const allPins = await axios.get(
           `${process.env.NEXT_PUBLIC_BACKEND_API}/api/pins`
@@ -38,6 +42,7 @@ export default function LubakMap() {
       } catch (err) {
         console.log(err);
       }
+      setIsFetchingPins(false);
     };
     getPins();
   }, []);
@@ -125,48 +130,57 @@ export default function LubakMap() {
 
   return (
     <>
-      <main className="bg-[gray] w-[100%]">
+      <main className=" w-[100%] h-[100vh] bg-slate-300">
         <HeaderSearch mymap={mymap} />
         <div className="map w-[100%] h-[100vh]">
-          <Map
-            id="mymap"
-            initialViewState={{ ...viewport }}
-            style={{ width: "100%", height: "100%" }}
-            mapStyle="mapbox://styles/mapbox/streets-v9"
-            mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_URL}
-            renderWorldCopies={false}
-            doubleClickZoom={false}
-            onDblClick={(e) => {
-              handleAddClick(e);
-            }}
-            onClick={() => {
-              closePopupOnOutsideClick();
-            }}
-          >
-            <DisplayPins
-              pins={pins}
-              intensity={intensity}
-              setIntensity={setIntensity}
-              currentPlaceId={currentPlaceId}
-              setCurrentPlaceId={setCurrentPlaceId}
-              handlePinClick={handlePinClick}
-              handleUpdateStatus={handleUpdateStatus}
-              setStatus={setStatus}
-              status={status}
-              handleDeleteClick={handleDeleteClick}
-            />
-
-            {/* CREATE NEW PIN */}
-            {newPlace !== null && (
-              <AddPin
-                newPlace={newPlace}
-                setNewPlace={setNewPlace}
-                handleSubmit={handleSubmit}
+          {isFetchingPins ? (
+            <div className="absolute left-[50%] top-[50%] ">
+              <div className="flex">
+                <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+                  <CircularProgress />
+                </Stack>
+              </div>
+            </div>
+          ) : (
+            <Map
+              id="mymap"
+              initialViewState={{ ...viewport }}
+              style={{ width: "100%", height: "100%" }}
+              mapStyle="mapbox://styles/mapbox/streets-v9"
+              mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_URL}
+              renderWorldCopies={false}
+              doubleClickZoom={false}
+              onDblClick={(e) => {
+                handleAddClick(e);
+              }}
+              onClick={() => {
+                closePopupOnOutsideClick();
+              }}
+            >
+              <DisplayPins
+                pins={pins}
+                intensity={intensity}
                 setIntensity={setIntensity}
+                currentPlaceId={currentPlaceId}
+                setCurrentPlaceId={setCurrentPlaceId}
+                handlePinClick={handlePinClick}
+                handleUpdateStatus={handleUpdateStatus}
+                setStatus={setStatus}
+                status={status}
                 handleDeleteClick={handleDeleteClick}
               />
-            )}
-          </Map>
+
+              {newPlace !== null && (
+                <AddPin
+                  newPlace={newPlace}
+                  setNewPlace={setNewPlace}
+                  handleSubmit={handleSubmit}
+                  setIntensity={setIntensity}
+                  handleDeleteClick={handleDeleteClick}
+                />
+              )}
+            </Map>
+          )}
         </div>
       </main>
     </>
