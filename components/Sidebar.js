@@ -86,7 +86,7 @@ function Sidebar() {
       >
         <div>
           {/* Sidebar header, mobile trigger */}
-          <div className="flex justify-between mb-6 pr-3 sm:px-2 lg:hidden">
+          <div className="flex justify-between mb-6  px-2 lg:hidden">
             <button
               ref={trigger}
               className="lg:hidden text-slate-100 flex justify-between items-center w-full px-2 mt-3"
@@ -127,7 +127,9 @@ function Sidebar() {
                 </div>
                 {/* By Intensity */}
                 <div className="flex flex-col mt-8 gap-3">
-                  <label className=" text-lg">By Intensity</label>
+                  <label className=" text-sm font-semibold uppercase">
+                    By Intensity
+                  </label>
                   <select
                     onChange={handleIntensityChange}
                     className="px-3  py-1 rounded-md text-lg focus:border-none text-slate-800 cursor-pointer w-full "
@@ -143,7 +145,9 @@ function Sidebar() {
 
                 {/* By Status */}
                 <div className="flex flex-col  mt-8 gap-3 ">
-                  <label className=" text-lg">By Status</label>
+                  <label className=" text-sm font-semibold uppercase">
+                    By Status
+                  </label>
                   <div className="flex items-center">
                     <input
                       type="checkbox"
@@ -181,7 +185,7 @@ function Sidebar() {
                 {/* By Submission */}
                 <div className="flex flex-col mt-8 gap-3">
                   <label
-                    className={`text-lg ${
+                    className={`text-sm font-semibold uppercase ${
                       !currentUsername ? "text-gray-500" : ""
                     }`}
                   >
