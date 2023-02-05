@@ -150,7 +150,7 @@ const HeaderSearch = ({ mymap }) => {
           onClick={() => {
             Router.push({ pathname: "/login" });
           }}
-          className={`z-50 max-h-[50px] bg-[#ff5c36] px-3 rounded-md hidden  text-white font-semibold ${
+          className={`z-50 max-h-[50px] bg-[green] px-3 rounded-md hidden  text-white font-semibold ${
             currentUsername === null ? "lg:block" : "lg:hidden"
           }`}
         >
@@ -161,7 +161,7 @@ const HeaderSearch = ({ mymap }) => {
           onClick={() => {
             Router.push({ pathname: "/register" });
           }}
-          className={`z-50 max-h-[50px] bg-[green] px-3 rounded-md hidden  text-white font-semibold ${
+          className={`z-50 max-h-[50px] bg-[#ca043b] px-3 rounded-md hidden  text-white font-semibold ${
             currentUsername === null ? "lg:block" : "hidden"
           }`}
         >

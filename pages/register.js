@@ -155,7 +155,7 @@ export default function Register() {
           </div>
 
           <button
-            className="bg-[#930c41] w-full p-4 rounded-md text-white"
+            className="bg-[#ca043b] w-full p-4 rounded-md text-white"
             type="submit"
           >
             Register
