@@ -4,7 +4,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Geocoder from "react-mapbox-gl-geocoder";
 import useViewportStore from "../store/viewportStore";
 import useUsernameStore from "../store/userNameStore";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";

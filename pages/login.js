@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import useUsernameStore from "../store/userNameStore";
 import Router from "next/router";
+import Logo from "../assets/lubak-logo.png";
+import Image from "next/image";
 
 export default function Login() {
   const {
@@ -29,9 +31,11 @@ export default function Login() {
       await setUserType(res.data.userType);
       setCurrentUsername(data.Username);
       Router.push({ pathname: "/" });
+      setSuccess(true);
       setError(false);
     } catch (err) {
       setError(true);
+      setSuccess(false);
     }
   };
 
@@ -45,25 +49,35 @@ export default function Login() {
   }, [currentUsername]);
 
   return (
-    <div className="bg-[gray] h-[100vh] w-[100%] flex items-center justify-center px-4">
-      <div className="bg-[lightgrey] max-w-[600px] w-[100%] h-[500px] flex justify-center flex-col items-center rounded-md">
-        <div className="flex flex-col items-center mb-8">
-          <p
-            className="font-semibold text-xl cursor-pointer"
+    <div className="bg-white h-[100vh] w-[100%] flex items-center justify-center px-4 ">
+      <div className=" h-[100vh] bg-container absolute"></div>
+      <div className="bg-white shadow-xl max-w-[600px] w-[100%] flex justify-center flex-col items-center rounded-md z-40 py-10">
+        <div className="flex flex-col items-center mb-8 ">
+          <Image
+            src={Logo}
+            alt="Lubak Tracker Logo"
+            className="cursor-pointer"
+            height={50}
+            onClick={() => {
+              Router.push({ pathname: "/" });
+            }}
+          ></Image>
+          <h1
+            className="text-2xl uppercase font-semibold cursor-pointer"
             onClick={() => {
               Router.push({ pathname: "/" });
             }}
           >
-            LUBAK TRACKER
-          </p>
-          <h2 className="font-semibold text-3xl">LOG IN</h2>
+            Lubak Tracker
+          </h1>
+          <h2 className="font-semibold text-3xl mt-5">LOG IN</h2>
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col justify-center items-center gap-4 w-[100%] px-6 lg:px-10"
         >
           <input
-            className="w-[100%] p-4 rounded-md"
+            className="w-[100%] p-4 rounded-md border-2"
             placeholder="Username"
             type="text"
             {...register("Username", {
@@ -75,7 +89,7 @@ export default function Login() {
           />
 
           <input
-            className="w-[100%] p-4 rounded-md"
+            className="w-[100%] p-4 rounded-md border-2"
             type="password"
             min="6"
             placeholder="Password"
@@ -93,16 +107,18 @@ export default function Login() {
             Login
           </button>
           {success && (
-            <span className="success">Successful. You can login now!</span>
+            <span className="success">Successful. Logging in...</span>
           )}
           {error && (
-            <span className="failure">Wrong username or password!</span>
+            <span className="failure text-[red]">
+              Wrong username or password!
+            </span>
           )}
         </form>
         <p className="mt-8">
           Don't have an account?{" "}
           <Link href={"/register"}>
-            <span>Register.</span>
+            <span className="font-semibold">Register.</span>
           </Link>
         </p>
       </div>

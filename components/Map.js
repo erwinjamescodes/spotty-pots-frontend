@@ -10,6 +10,7 @@ import DisplayPins from "./DisplayPins";
 import AddPin from "./AddPin";
 import Loader from "../components/Loader";
 export default function LubakMap({}) {
+  
   const viewport = useViewportStore();
   const { currentUsername, setCurrentUsername, setUserType } =
     useUsernameStore();
@@ -149,7 +150,6 @@ export default function LubakMap({}) {
               onClick={() => {
                 closePopupOnOutsideClick();
               }}
-              // onLoad={() => setIsMapLoading(false)}
             >
               <DisplayPins
                 pins={pins}
