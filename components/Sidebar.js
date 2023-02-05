@@ -135,11 +135,11 @@ function Sidebar() {
                     className="px-3  py-1 rounded-md text-lg focus:border-none text-slate-800 cursor-pointer w-full "
                   >
                     <option value="0">--</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="1">Minor</option>
+                    <option value="2">Moderate</option>
+                    <option value="3">Severe</option>
+                    <option value="4">Extreme</option>
+                    <option value="5">No longer passable</option>
                   </select>
                 </div>
 
