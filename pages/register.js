@@ -46,6 +46,17 @@ export default function Register() {
     return emailRegex.test(email);
   };
 
+  const submitDisabled = (email) => {
+    return (
+      !userName ||
+      userName.length < 4 ||
+      !email ||
+      !validateEmail(email) ||
+      !password ||
+      password.length < 6
+    );
+  };
+
   return (
     <div className="bg-white h-[100vh] w-[100%] flex items-center justify-center  px-4">
       <div className=" h-[100vh] bg-container absolute"></div>
@@ -83,7 +94,7 @@ export default function Register() {
                 required: true,
                 minLength: 4,
                 maxLength: 20,
-                pattern: /^.{5,}$/,
+                pattern: /^.{4,}$/,
               })}
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -144,7 +155,7 @@ export default function Register() {
             />
             {password?.length < 6 && password?.length !== 0 && (
               <p className="text-xs pl-4 mt-1 py-1 text-[red] bg-red-200">
-                Username must be at least 4 characters.
+                Username must be at least 6 characters.
               </p>
             )}
             {password?.length === 0 && (
@@ -155,8 +166,13 @@ export default function Register() {
           </div>
 
           <button
-            className="bg-[#ca043b] w-full p-4 rounded-md text-white"
+            className={`${
+              !submitDisabled(email)
+                ? "bg-[#ca043b] cursor-pointer"
+                : "bg-[#94032c] cursor-not-allowed"
+            } w-full p-4 rounded-md text-white`}
             type="submit"
+            disabled={submitDisabled(email)}
           >
             Register
           </button>
