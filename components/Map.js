@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Map, { useMap } from "react-map-gl";
+import Map, { useMap, GeolocateControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import useViewportStore from "../store/viewportStore";
 import useUsernameStore from "../store/userNameStore";
+import useLoadingStore from "../store/loadingStore";
 import HeaderSearch from "./HeaderSearch";
 import DisplayPins from "./DisplayPins";
 import AddPin from "./AddPin";
-import Stack from "@mui/material/Stack";
-import CircularProgress from "@mui/material/CircularProgress";
-
-export default function LubakMap() {
+import Loader from "../components/Loader";
+export default function LubakMap({}) {
   const viewport = useViewportStore();
-  const { currentUsername, setCurrentUsername, userType, setUserType } =
+  const { currentUsername, setCurrentUsername, setUserType } =
     useUsernameStore();
+  const { isFetchingPins, setIsFetchingPins } = useLoadingStore();
   const [pins, setPins] = useState([]);
   const [newPlace, setNewPlace] = useState(null);
   const [intensity, setIntensity] = useState(1);
@@ -21,8 +21,6 @@ export default function LubakMap() {
   const [clickedAPin, setClickedAPin] = useState(false);
   const [status, setStatus] = useState(false);
   const { mymap } = useMap();
-  const [isFetchingPins, setIsFetchingPins] = useState(false);
-  const [isMapLoading, setIsMapLoading] = useState(true);
 
   //SETTING UP STATES AND LOCAL STORAGE
   useEffect(() => {
@@ -133,15 +131,9 @@ export default function LubakMap() {
     <>
       <main className=" w-[100%] h-[100vh] bg-slate-300">
         <HeaderSearch mymap={mymap} />
-        <div className="map w-[100%] h-[100vh]">
-          {isFetchingPins && isMapLoading ? (
-            <div className="absolute left-[50%] top-[50%] ">
-              <div className="flex">
-                <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
-                  <CircularProgress />
-                </Stack>
-              </div>
-            </div>
+        <div className="map w-[100%] h-[100%]">
+          {isFetchingPins ? (
+            <Loader />
           ) : (
             <Map
               id="mymap"
@@ -157,7 +149,7 @@ export default function LubakMap() {
               onClick={() => {
                 closePopupOnOutsideClick();
               }}
-              onLoad={() => setIsMapLoading(false)}
+              // onLoad={() => setIsMapLoading(false)}
             >
               <DisplayPins
                 pins={pins}
@@ -171,7 +163,6 @@ export default function LubakMap() {
                 status={status}
                 handleDeleteClick={handleDeleteClick}
               />
-
               {newPlace !== null && (
                 <AddPin
                   newPlace={newPlace}
@@ -181,6 +172,10 @@ export default function LubakMap() {
                   handleDeleteClick={handleDeleteClick}
                 />
               )}
+              <GeolocateControl
+                position="bottom-right"
+                showAccuracyCircle={false}
+              />
             </Map>
           )}
         </div>

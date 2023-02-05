@@ -11,6 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Router from "next/router";
 import useSidebarStore from "../store/sidebarStore";
 import ProfileIcon from "../assets/profile.svg";
+import Image from "next/image";
 
 const HeaderSearch = ({ mymap }) => {
   const { width } = useWindowSize();
@@ -29,17 +30,11 @@ const HeaderSearch = ({ mymap }) => {
     setAnchorEl(null);
   };
 
-  // const clearSearch = () => {
-  //   const container = document.getElementById("geocoder-id");
-  //   const inputs = container.getElementsByTagName("input")[0];
-  //   inputs.value = "";
-  // };
-
   return (
     <div className="flex justify-center w-[100%]">
-      <div className="search-and-login flex justify-between px-4 w-[100%] gap-4">
+      <div className="absolute top-[16px] flex justify-between px-4 w-[100%] gap-4">
         <div
-          className="geocoder-holder flex rounded-md items-start "
+          className="w-[100%] bg-white z-50 px-[16px]  flex rounded-md items-start "
           id="geocoder-id"
         >
           {width > 1024 ? (
@@ -67,15 +62,13 @@ const HeaderSearch = ({ mymap }) => {
             initialInputValue={" "}
             updateInputOnSelect={true}
           />
-          {/* <AccountCircleIcon
-            sx={{ marginTop: "10px", fontSize: "30px" }}
-            className={`block lg:hidden`}
+          <Image
+            src={ProfileIcon}
+            alt="Lubak Tracker Logo"
+            height={30}
             onClick={handleAccountClick}
-          /> */}
-          <div
-            className="account-logo-holder block lg:hidden"
-            onClick={handleAccountClick}
-          ></div>
+            className="mt-[10px]"
+          ></Image>
 
           <Menu
             className="lg:hidden"

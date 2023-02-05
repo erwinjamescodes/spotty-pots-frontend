@@ -38,7 +38,7 @@ export default function Register() {
   };
 
   return (
-    <div className="bg-[gray] h-[100vh] w-[100%] flex items-center justify-center">
+    <div className="bg-[gray] h-[100vh] w-[100%] flex items-center justify-center  px-4">
       <div className="bg-[lightgrey] max-w-[600px] w-[100%] h-[500px] flex justify-center flex-col items-center rounded-md">
         <div className="flex flex-col items-center mb-8">
           <p
@@ -53,7 +53,7 @@ export default function Register() {
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col justify-center items-center gap-4 w-[100%] px-10"
+          className="flex flex-col justify-center items-center gap-4 w-[100%] px-6 lg:px-10"
         >
           <input
             className="w-[100%] p-4 rounded-md"

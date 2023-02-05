@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import WarningIcon from "@mui/icons-material/Warning";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import HelpIcon from "@mui/icons-material/Help";
 import useSidebarStore from "../store/sidebarStore";
 import useFilterStore from "../store/filterStore";
 import useUsernameStore from "../store/userNameStore";
 import { legend } from "../utils/intensityLegend";
+import Logo from "../assets/lubak-logo.png";
+import Image from "next/image";
 
 function Sidebar() {
   const { sidebarOpen, setSidebarOpen } = useSidebarStore();
@@ -82,7 +85,7 @@ function Sidebar() {
         }`}
       >
         <div>
-          {/* Sidebar header */}
+          {/* Sidebar header, mobile trigger */}
           <div className="flex justify-between mb-6 pr-3 sm:px-2 lg:hidden">
             <button
               ref={trigger}
@@ -91,23 +94,33 @@ function Sidebar() {
               aria-controls="sidebar"
               aria-expanded={sidebarOpen}
             >
-              <div className="">
-                <h1 className="text-2xl uppercase font-semibold ">
+              <div className="flex items-center gap-3">
+                <Image src={Logo} alt="Lubak Tracker Logo" height={30}></Image>
+                <h1 className="text-xl uppercase font-semibold ">
                   LUBAK TRACKER
                 </h1>
               </div>
             </button>
           </div>
           {/* Sidebar Content */}
+
           <div className="lg:mt-4 text-slate-100 pl-2 pr-4">
             {/* Header Title */}
-            <div className="hidden lg:block">
-              <h1 className="text-2xl uppercase font-semibold ">
+            <div className="hidden lg:flex items-center gap-3 ">
+              <Image src={Logo} alt="Lubak Tracker Logo" height={35}></Image>
+              <h1 className="text-xl uppercase font-semibold ">
                 LUBAK TRACKER
               </h1>
             </div>
+
+            {/* ADD PIN INSTRUCTIONS */}
+            <div className="mt-8 w-full border rounded-md p-3 flex gap-2 items-start mb-4 lg:mb-0">
+              <h3 className="text-sm">
+                Double click on the map to report a new pothole.
+              </h3>
+            </div>
             {/* Filters  */}
-            <form>
+            <form className="">
               <div className="flex flex-col">
                 <div className="mt-2 lg:mt-8  pb-2 border-b">
                   <h2 className="text-lg uppercase font-semibold">Filter</h2>
@@ -167,7 +180,13 @@ function Sidebar() {
                 </div>
                 {/* By Submission */}
                 <div className="flex flex-col mt-8 gap-3">
-                  <label className=" text-lg">By Submission</label>
+                  <label
+                    className={`text-lg ${
+                      !currentUsername ? "text-gray-500" : ""
+                    }`}
+                  >
+                    By Submission
+                  </label>
                   <div className="flex items-center">
                     <input
                       type="checkbox"

@@ -1,43 +1,43 @@
 import React from "react";
 import useFilterStore from "../store/filterStore";
 import useViewportStore from "../store/viewportStore";
+import useUsernameStore from "../store/userNameStore";
 import { pinColorScheme } from "../utils/pinColorScheme";
 import { Marker, Popup } from "react-map-gl";
 import * as timeago from "timeago.js";
 import WarningIcon from "@mui/icons-material/Warning";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import useUsernameStore from "../store/userNameStore";
 import { legend } from "../utils/intensityLegend";
 
 const DisplayPins = ({
   pins,
   intensity,
   setIntensity,
+  setStatus,
+  status,
   currentPlaceId,
   setCurrentPlaceId,
   handlePinClick,
   handleUpdateStatus,
-  setStatus,
-  status,
   handleDeleteClick,
 }) => {
   const viewport = useViewportStore();
   const { intensityFilter, statusFilter, submissionFilter } = useFilterStore();
-  const { currentUsername, setCurrentUsername, userType } = useUsernameStore();
-  console.log(userType);
+  const { currentUsername, userType } = useUsernameStore();
+
   return (
     <>
       {pins
-        .filter((item) =>
-          intensityFilter === 0 ? item : intensityFilter === item.intensity
+        .filter((pin) =>
+          intensityFilter === 0 ? pin : intensityFilter === pin.intensity
         )
-        .filter((item) =>
+        .filter((pin) =>
           statusFilter.length === 0
-            ? item
-            : statusFilter.includes(item.isFixed.toString())
+            ? pin
+            : statusFilter.includes(pin.isFixed.toString())
         )
-        .filter((item) => {
-          return submissionFilter ? currentUsername === item.username : item;
+        .filter((pin) => {
+          return submissionFilter ? currentUsername === pin.username : pin;
         })
         .map((pin, index) => (
           <div key={index}>
@@ -86,15 +86,11 @@ const DisplayPins = ({
                   <h1 className="text-md">
                     Reported {timeago.format(pin.createdAt)}
                   </h1>
-
                   {currentUsername === pin.username || userType === "admin" ? (
                     <>
                       <label className="font-bold text-md">
                         Edit Intensity and Status
                       </label>
-                      {/* <label className="font-bold text-lg">
-                        Lubak Intensity
-                      </label> */}
                       <select
                         onChange={(e) => setIntensity(e.target.value)}
                         className="px-3 py-2 rounded-md text-lg"
@@ -112,7 +108,6 @@ const DisplayPins = ({
                         <option value="false">Still there... &#128557;</option>
                         <option value="true">Fixed! &#128526;</option>
                       </select>
-
                       <button
                         type="submit"
                         className="bg-[green]  py-1 rounded-md text-white font-bold text-lg"
@@ -150,7 +145,6 @@ const DisplayPins = ({
                       </h2>
                     </>
                   )}
-
                   {currentUsername === pin.username || userType === "admin" ? (
                     <button
                       type="submit"
