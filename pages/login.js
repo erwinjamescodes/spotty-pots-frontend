@@ -107,7 +107,7 @@ export default function Login() {
             Login
           </button>
           {success && (
-            <span className="success text-center">
+            <span className="success text-center text-[green]">
               Successful. Logging in...
             </span>
           )}
