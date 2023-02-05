@@ -67,7 +67,7 @@ const HeaderSearch = ({ mymap }) => {
             alt="Lubak Tracker Logo"
             height={30}
             onClick={handleAccountClick}
-            className="mt-[10px]"
+            className="mt-[10px] lg:hidden"
           ></Image>
 
           <Menu
