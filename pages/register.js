@@ -161,7 +161,7 @@ export default function Register() {
             Register
           </button>
           {success && (
-            <span className="success text-[green]">
+            <span className="success text-[green] text-center">
               Successful. Redirecting to Login Page...
             </span>
           )}

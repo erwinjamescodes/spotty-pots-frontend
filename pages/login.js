@@ -107,10 +107,12 @@ export default function Login() {
             Login
           </button>
           {success && (
-            <span className="success">Successful. Logging in...</span>
+            <span className="success text-center">
+              Successful. Logging in...
+            </span>
           )}
           {error && (
-            <span className="failure text-[red]">
+            <span className="failure text-[red] text-center">
               Wrong username or password!
             </span>
           )}
