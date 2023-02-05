@@ -34,7 +34,7 @@ const HeaderSearch = ({ mymap }) => {
     <div className="flex justify-center w-[100%]">
       <div className="absolute top-[16px] flex justify-between px-4 w-[100%] gap-4">
         <div
-          className="w-[100%] bg-white z-50 px-[16px]  flex rounded-md items-start "
+          className="w-[100%] bg-white z-30 px-[16px]  flex rounded-md items-start "
           id="geocoder-id"
         >
           {width > 1024 ? (
