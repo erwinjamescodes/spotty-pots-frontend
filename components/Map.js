@@ -133,7 +133,7 @@ export default function LubakMap({}) {
 
   return (
     <>
-      <main className=" w-[100%] h-[100vh] bg-slate-300">
+      <main className=" w-[100%] h-[100vh] bg-white">
         <HeaderSearch mymap={mymap} />
         <div className="map w-[100%] h-[100%]">
           {isFetchingPins ? (

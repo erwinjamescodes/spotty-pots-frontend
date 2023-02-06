@@ -1,7 +1,6 @@
 import React from "react";
 import Logo from "../assets/lubak-logo.png";
 import Image from "next/image";
-import LoadingSpinner from "../utils/loadingSpinner";
 
 const Loader = () => {
   return (
