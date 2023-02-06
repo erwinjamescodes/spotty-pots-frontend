@@ -10,7 +10,6 @@ import DisplayPins from "./DisplayPins";
 import AddPin from "./AddPin";
 import Loader from "../components/Loader";
 export default function LubakMap({}) {
-  
   const viewport = useViewportStore();
   const { currentUsername, setCurrentUsername, setUserType } =
     useUsernameStore();
@@ -42,10 +41,14 @@ export default function LubakMap({}) {
       } catch (err) {
         console.log(err);
       }
-      setIsFetchingPins(false);
+      await setIsFetchingPins(false);
     };
     getPins();
   }, []);
+
+  useEffect(() => {
+    console.log(isFetchingPins);
+  }, [isFetchingPins]);
 
   //FUNCTIONS
   const handleAddClick = (e) => {
