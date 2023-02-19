@@ -77,7 +77,7 @@ export default function Register() {
               Router.push({ pathname: "/" });
             }}
           >
-            Lubak Tracker
+            Spotty Pots!
           </h1>
           <h2 className="font-semibold text-3xl mt-5">REGISTER</h2>
         </div>

@@ -96,8 +96,8 @@ function Sidebar() {
             >
               <div className="flex items-center gap-3">
                 <Image src={Logo} alt="Lubak Tracker Logo" height={30}></Image>
-                <h1 className="text-xl uppercase font-semibold ">
-                  LUBAK TRACKER
+                <h1 className="text-xluppercase font-semibold ">
+                  Spotty Pots!
                 </h1>
               </div>
             </button>
@@ -108,9 +108,7 @@ function Sidebar() {
             {/* Header Title */}
             <div className="hidden lg:flex items-center gap-3 ">
               <Image src={Logo} alt="Lubak Tracker Logo" height={35}></Image>
-              <h1 className="text-xl uppercase font-semibold ">
-                LUBAK TRACKER
-              </h1>
+              <h1 className="text-xl uppercase font-semibold ">Spotty Pots!</h1>
             </div>
 
             {/* ADD PIN INSTRUCTIONS */}

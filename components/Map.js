@@ -46,10 +46,6 @@ export default function LubakMap({}) {
     getPins();
   }, []);
 
-  useEffect(() => {
-    console.log(isFetchingPins);
-  }, [isFetchingPins]);
-
   //FUNCTIONS
   const handleAddClick = (e) => {
     setCurrentPlaceId(null);

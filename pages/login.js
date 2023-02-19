@@ -68,7 +68,7 @@ export default function Login() {
               Router.push({ pathname: "/" });
             }}
           >
-            Lubak Tracker
+            Spotty Pots!
           </h1>
           <h2 className="font-semibold text-3xl mt-5">LOG IN</h2>
         </div>

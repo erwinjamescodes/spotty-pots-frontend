@@ -9,7 +9,7 @@ const index = () => {
   return (
     <>
       <Head>
-        <title>Lubak Tracker</title>
+        <title>Spotty Pots!</title>
         <meta name="description" content="Pothole Tracker App" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
