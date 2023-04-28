@@ -8,7 +8,7 @@ const Loader = () => {
       <div className=" h-[100vh] bg-container absolute"></div>
       <Image src={Logo} alt="Lubak Tracker Logo" height={60}></Image>
       <h1 className="text-lg ">Welcome to </h1>
-      <h1 className="text-4xl uppercase font-semibold">Spotty Pots!</h1>
+      <h1 className="text-4xl uppercase font-bold">Spotty Pots!</h1>
       <span class="loader mt-10"></span>
       <h1 className="text-lg mt-4">Loading map. Please wait...</h1>
     </div>
